@@ -1,0 +1,44 @@
+@model ClientViewModel
+@{
+    var pageName = "ADD HERE PAGE NAME";
+    ViewData["Title"] = $"Editar {pageName}";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box page-title-box-alt">
+            <h4 class="page-title">@pageName</h4>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">ProjectBase</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Client">@pageName</a></li>
+                    <li class="breadcrumb-item active">Editar @pageName</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">Editar @pageName</h4>
+                <p class="sub-header">
+                    Você esta na tela de edição de @pageName.
+                </p>
+                <form id="form-client" asp-action="Update" asp-controller="Client" method="post">
+                    @{
+                        await Html.RenderPartialAsync("_Form");
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/Client.js"></script>
+}

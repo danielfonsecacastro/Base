@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ProjectBase.Web.Controllers
 {
-    [Authorize]
     public class ClientController : Controller
     {
         public ClientController(IMediator mediator)

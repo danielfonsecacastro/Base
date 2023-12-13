@@ -1,0 +1,106 @@
+@model List<ClientViewModel>
+@{
+    ViewData["Title"] = "Ferramentas de Investigação";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box page-title-box-alt">
+            <h4 class="page-title">@ViewData["Title"]</h4>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">GCBem</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">Lista de @ViewData["Title"]</h4>
+                <p class="sub-header">
+                    Lista de todas @ViewData["Title"] disponíveis.
+                </p>
+                <div class="button-list">
+                    <button id="bt-insert" type="button" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-plus-thick me-1"></i> Novo</button>
+                    <button id="bt-update" disabled type="button" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-lead-pencil me-1"></i> Atualizar</button>
+                    <button id="bt-delete" disabled type="button" class="btn btn-danger waves-effect waves-light"><i class="mdi mdi-delete ms-1"></i> Excluir</button>
+                </div>
+
+                <table id="datatable-buttons" class="table dt-responsive nowrap w-100">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>CreatedAt</th>
+                            <th>UpdatedAt</th>
+                            <th>IsDeleted</th>
+                            <th>BusinessName</th>
+                            <th>CnpjNumber</th>
+                            <th>Manager</th>
+                            <th>Email</th>
+                            <th>WhatsApp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="tr-@item.Id" class="tablesaw-sortable-btn">
+                                <td>@item.Id</td>
+                                <td>@item.CreatedAt</td>
+                                <td>@item.UpdatedAt</td>
+                                <td>@item.IsDeleted</td>
+                                <td>@item.BusinessName</td>
+                                <td>@item.CnpjNumber</td>
+                                <td>@item.Manager</td>
+                                <td>@item.Email</td>
+                                <td>@item.WhatsApp</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_DataTableScriptsPartial");
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/Client.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            settings = {
+                btInsert: document.getElementById("bt-insert"),
+                btUpdate: document.getElementById("bt-update"),
+                btDelete: document.getElementById("bt-delete")
+            };
+
+            dataTableHelper.iniciar(settings);
+
+            settings.btInsert.addEventListener("click", function () {
+                document.location = '/Client/create';
+            }, false);
+
+            settings.btUpdate.addEventListener("click", function () {
+                document.location = '/Client/update/' + dataTableHelper.selectedId;
+            }, false);
+
+            settings.btDelete.addEventListener("click", function () {
+                client.delete(dataTableHelper.selectedId);
+            }, false);
+        });
+    </script>
+}
+
+@section Css {
+    @{
+        await Html.RenderPartialAsync("_DatatablesCss");
+    }
+}

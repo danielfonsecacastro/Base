@@ -1,0 +1,41 @@
+@model ClientViewModel
+<input type="hidden" asp-for="Id" />
+<div class="row">
+    <div class="mb-2">
+        <label asp-for="BusinessName" class="form-label">BusinessName</label>
+        <input asp-for="BusinessName" type="text" class="form-control" placeholder="" />
+        <span asp-validation-for="BusinessName" class="text-danger"></span>
+    </div>
+</div>
+<div class="row">
+    <div class="mb-2">
+        <label asp-for="CnpjNumber" class="form-label">CnpjNumber</label>
+        <input asp-for="CnpjNumber" type="text" class="form-control" placeholder="" />
+        <span asp-validation-for="CnpjNumber" class="text-danger"></span>
+    </div>
+</div>
+<div class="row">
+    <div class="mb-2">
+        <label asp-for="Manager" class="form-label">Manager</label>
+        <input asp-for="Manager" type="text" class="form-control" placeholder="" />
+        <span asp-validation-for="Manager" class="text-danger"></span>
+    </div>
+</div>
+<div class="row">
+    <div class="mb-2">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input asp-for="Email" type="text" class="form-control" placeholder="" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+</div>
+<div class="row">
+    <div class="mb-2">
+        <label asp-for="WhatsApp" class="form-label">WhatsApp</label>
+        <input asp-for="WhatsApp" type="text" class="form-control" placeholder="" />
+        <span asp-validation-for="WhatsApp" class="text-danger"></span>
+    </div>
+</div>
+
+<a id="btn-cancel" asp-action="Index" asp-controller="Client" class="btn btn-danger waves-effect waves-light"><i class="mdi mdi-undo-variant me-1"></i> Voltar</a>
+<button onclick="client.save()" type="button" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-content-save me-1"></i> Salvar</button>
+<button onclick="client.save(true)" type="button" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-content-save me-1"></i> Salvar & Fechar</button>

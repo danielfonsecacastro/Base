@@ -1,10 +1,26 @@
+using Microsoft.EntityFrameworkCore;
+using ProjectBase.Core.Interfaces;
+using ProjectBase.CQRS.QueryHandlers.Client;
+using ProjectBase.Infrastructure.Data;
+using ProjectBase.Infrastructure.Data.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+builder.Services.AddDbContext<ProjectBaseContext>(c =>
+               c.UseLazyLoadingProxies()
+               .UseSqlServer(configuration.GetConnectionString("ProjectBaseConnection"))
+           );
 
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AllClientHandle).Assembly));
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

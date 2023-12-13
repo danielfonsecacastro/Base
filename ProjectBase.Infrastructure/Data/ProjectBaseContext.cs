@@ -20,6 +20,5 @@ namespace ProjectBase.Infrastructure.Data
 
             builder.Entity<Client>().HasData(new Client("Company Test", "99.999.999/9999-99", "Miguel", "emaiil@company.com") { Id = 1 });
         }
-
     }
 }
