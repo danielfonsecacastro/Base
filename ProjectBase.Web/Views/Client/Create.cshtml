@@ -1,7 +1,7 @@
 @model ClientViewModel
 @{
-    var pageName = "ADD HERE PAGE NAME";
-    ViewData["Title"] = $"Nova {pageName}";
+    var pageName = "Cliente";
+    ViewData["Title"] = $"Novo {pageName}";
 }
 <div class="row">
     <div class="col-12">
@@ -9,7 +9,7 @@
             <h4 class="page-title">@pageName</h4>
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">ProjectBase</a></li>
+                    <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">ProjectBase</a></li>
                     <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Client">@pageName</a></li>
                     <li class="breadcrumb-item active">Criar @pageName</li>
                 </ol>

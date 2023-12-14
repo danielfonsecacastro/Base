@@ -21,7 +21,7 @@
         }).done(function (data, status, response) {
             Swal.fire(
                 'Tudo certo!',
-                '[HumanEntityName] salva com sucesso',
+                'Cliente salva com sucesso',
                 'success'
             ).then(() => {
                 if (model.Id == 0) {
@@ -48,7 +48,7 @@
     this.delete = function (id) {
         Swal.fire({
             icon: 'warning',
-            title: 'Tem certeza que deseja excluir essa [HumanEntityName]?',
+            title: 'Tem certeza que deseja excluir esse Cliente?',
             showCancelButton: true,
             confirmButtonText: 'Sim',
             cancelButtonText: 'Cancelar',
